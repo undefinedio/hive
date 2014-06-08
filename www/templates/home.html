@@ -1,16 +1,72 @@
-<ion-view>
+<ion-view class="home">
 	<ion-nav-bar class="bar-stable nav-title-slide-ios7">
-		<h1 class="title">Home</h1>
+		<h1 class="title">Hive</h1>
+
 		<div class="buttons">
-			<a class="button" ng-href="#/edit">Add</a>
+			<a class="button no-border" ng-href="#/edit">
+				<svg version="1.1" id="Layer_1"  x="0px" y="0px"
+	 width="32.76px" height="24.833px" viewBox="0 0 32.76 24.833" enable-background="new 0 0 32.76 24.833" xml:space="preserve">
+<g>
+	<polygon points="24.913,10.554 26.005,12.448 20.154,22.585 8.447,22.585 2.595,12.448 8.447,2.311 20.154,2.311 21.516,4.672
+		23.355,3.363 21.451,0.063 7.15,0.063 0,12.448 7.15,24.833 21.451,24.833 28.601,12.448 26.75,9.245 	"/>
+	<polygon points="8.239,18.243 11.324,17.948 9.537,15.437 	"/>
+	<rect x="19.824" y="-3.358" transform="matrix(-0.5801 -0.8145 0.8145 -0.5801 27.5448 31.361)" width="4.062" height="23.878"/>
+</g>
+</svg>
+
+			</a>
 		</div>
 	</ion-nav-bar>
 	<ion-content>
-			<ion-list>
-				<ion-item ng-repeat="idea in ideas" class="item item-icon-right" ng-href="#/edit/{{idea.id}}">
-						{{idea.content}}
-						<span class="badge badge-assertive">0</span>
-				</ion-item>
-			</ion-list>
-	  </ion-content>
+		<ion-list>
+			<div class="item item-divider">
+				My ideas
+			</div>
+			<ion-item ng-repeat="idea in ideas | filter:{ public: false }"
+				class="item item-icon-right item-button-right" ng-href="#/edit/{{idea._id}}">
+				<p>{{idea.content}}</p>
+				<span class="item-note">
+				{{idea.expire_date_formatted}}
+				</span>
+			</ion-item>
+			<div class="item item-divider">
+				In the wild!
+			</div>
+			<ion-item ng-repeat="idea in ideas | filter:{ public: true }" class="item item-icon-right item-button-right"
+					  ng-href="#/edit/{{idea._id}}">
+					<p>{{idea.content}}</p>
+					<span class="item-note" style="color:red;">
+					{{idea.expire_date_formatted}}
+					</span>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+	<div class="bar bar-footer bar-stable">
+		<div class="title">
+
+
+			<div class="buttons">
+				<a class="button no-border">
+					<svg version="1.1" id="Layer_1"  x="0px" y="0px"
+	 width="31.16px" height="24.991px" viewBox="0 0 31.16 24.991" enable-background="new 0 0 31.16 24.991" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M24.412,10.584l1.072,1.912L19.75,22.724H8.278L2.543,12.496L8.278,2.268H19.75
+				l1.336,2.382l1.801-1.321L21.019,0H7.007L0,12.496l7.007,12.495h14.012l7.008-12.495l-1.812-3.232L24.412,10.584z M11.803,9.576
+				c-0.782,0-1.416,0.647-1.416,1.445c0,0.798,0.634,1.445,1.416,1.445s1.416-0.647,1.416-1.445
+				C13.219,10.223,12.585,9.576,11.803,9.576z M19.828,11.502c0,0.532,0.424,0.964,0.945,0.964s0.943-0.432,0.943-0.964
+				c0-0.532-0.422-0.963-0.943-0.963S19.828,10.971,19.828,11.502z M15.107,6.685c0,1.064,0.846,1.927,1.888,1.927
+				c1.043,0,1.889-0.863,1.889-1.927s-0.846-1.927-1.889-1.927C15.953,4.758,15.107,5.621,15.107,6.685z M14.163,19.21
+				c0.521,0,0.944-0.431,0.944-0.963s-0.423-0.964-0.944-0.964s-0.944,0.432-0.944,0.964S13.642,19.21,14.163,19.21z M29.744,3.794
+				c-0.783,0-1.418,0.647-1.418,1.445s0.635,1.445,1.418,1.445c0.781,0,1.416-0.647,1.416-1.445S30.525,3.794,29.744,3.794z"/>
+		</g>
+	</g>
+</g>
+</svg>
+					inspire
+				</a>
+			</div>
+		</div>
+	</div>
 </ion-view>

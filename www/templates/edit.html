@@ -1,9 +1,20 @@
-<ion-view>
+<ion-view class="edit">
 	<ion-nav-bar class="bar-stable nav-title-slide-ios7">
 		<div class="buttons">
-			<a class="button" ng-href="#/home">Back</a>
+			<a class="button no-border" ng-href="#/home">
+				<svg version="1.1" id="Layer_1"  x="0px" y="0px"
+	 width="8.512px" height="24.959px" viewBox="0 0 8.512 24.959" enable-background="new 0 0 8.512 24.959" xml:space="preserve">
+<polyline points="8.512,22.694 2.614,12.48 8.512,2.264 7.206,0 0,12.48 7.206,24.959 "/>
+</svg>
+			</a>
 		</div>
-		<h1 class="title">Edit</h1>
+		<h1 class="title">Hive</h1>
+		<div class="buttons">
+			<a class="button no-border saved" ng-href="#/home">
+				<h5 class="saved">Saved <span class="one">.</span><span class="two">.</span><span class="three">.</span></h5>
+			</a>
+		</div>
+
 	</ion-nav-bar>
 	<ion-content>
 		<textarea name="content" id="" cols="30" rows="10" ng-change="onEdit()"  ng-model="idea.content"></textarea>
