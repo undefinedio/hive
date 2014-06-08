@@ -1,0 +1,16 @@
+<ion-view>
+	<ion-nav-bar class="bar-stable nav-title-slide-ios7">
+		<h1 class="title">Home</h1>
+		<div class="buttons">
+			<a class="button" ng-href="#/edit">Add</a>
+		</div>
+	</ion-nav-bar>
+	<ion-content>
+			<ion-list>
+				<ion-item ng-repeat="idea in ideas" class="item item-icon-right" ng-href="#/edit/{{idea.id}}">
+						{{idea.content}}
+						<span class="badge badge-assertive">0</span>
+				</ion-item>
+			</ion-list>
+	  </ion-content>
+</ion-view>
