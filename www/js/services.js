@@ -1,13 +1,12 @@
 angular.module('starter.services', [])
 	.factory('common' , function(){
-		return {};
+		return {
+            apiUrl : "http://hive-app-mind.herokuapp.com",
+            deviceId : "simon"
+        };
 	})
 	.provider('Idea', function () {
-		var common = {
-			apiUrl : "http://hive-app-mind.herokuapp.com",
-			deviceId : "simon"
-		};
-		this.$get = ['$resource', function ($resource) {
+		this.$get = function ($resource, common) {
 			var Idea = $resource( common.apiUrl +'/ideas/device/'+ common.deviceId +'/:_id', {}, {
 				update: {
 					method: 'PUT'
@@ -17,13 +16,8 @@ angular.module('starter.services', [])
 				}
 			});
 			return Idea;
-		}];
-	}).factory('IdeaService' , function(Idea, $http){
-		var common = {
-			apiUrl : "http://hive-app-mind.herokuapp.com",
-			deviceId : "simon"
 		};
-
+	}).factory('IdeaService' , function(Idea, $http, common){
 		localStorage.clear();
 
 		var ideas = [];
