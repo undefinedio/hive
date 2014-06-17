@@ -29,14 +29,11 @@ angular.module('starter.services', [])
             deviceId = $cordovaDevice.getUUID();
         }
 
-        console.log(deviceId);
-
         return {
             apiUrl : "http://hive-app-mind.herokuapp.com",
             deviceId : deviceId
         };
 	})
-
     //this is the resource provider for all ideas
 	.provider('IdeaResource', function () {
         this.$get = function ($resource, common) {
@@ -50,6 +47,7 @@ angular.module('starter.services', [])
             });
             return Idea;
         };
+
     }).factory('IdeaCache', function(IdeaResource){
         return {
             getAll : function(){
@@ -69,11 +67,13 @@ angular.module('starter.services', [])
                 },1000);
             }
         };
-    }).factory('IdeaSync', function(common , $http){
+    }).factory('IdeaSync', function(common , $http, $cordovaNetwork){
         var interval;
         return {
             startSync : function(ideas){
                 var syncing = false;
+                //if device has no internet don't sync
+                if($cordovaNetwork.isOffline()) return false;
                 //save every 2 seconds
                 interval = setInterval(function(){
                     if(syncing) return false;
@@ -87,23 +87,17 @@ angular.module('starter.services', [])
                                 data : JSON.stringify(nonSynced)
                             }
                         ).success(function(data){
-                                syncing = false;
-                                nonSynced.forEach(function(item){
-                                    if(data.data){
-                                        data.data.forEach(function(newIds){
-                                            if(item._id == newIds.frontID) item._id = newIds.mongoID;
-                                        });
-                                    }
-                                    item.synced = true;
-                                    item.new = false;
-                                });
+                            syncing = false;
+                            nonSynced.forEach(function(item){
+                                if(data.data){
+                                    data.data.forEach(function(newIds){
+                                        if(item._id == newIds.frontID) item._id = newIds.mongoID;
+                                    });
+                                }
+                                item.synced = true;
+                                item.new = false;
                             });
-
-                        nonSynced.forEach(function(item){
-                            item.synced = true;
-                            item.new = false;
                         });
-
                     }
                 }, 2000);
             },
@@ -113,24 +107,24 @@ angular.module('starter.services', [])
         };
     //this is the service that the controller communcates with
 	}).factory('IdeaService' , function( IdeaCache , IdeaSync , $http, common){
-
-        localStorage.clear();
-
+        //fetch ideas ( from cache or server )
         var ideas = IdeaCache.getAll();
 
 		var api =  {
             init : function(){
-                console.log(ideas);
+                //start saving ideas to localstorage
                 IdeaCache.saveLocalStorage(ideas);
+                //check expire date on ideas
                 if(ideas.$promise){
                     ideas.$promise.then(this.checkExpire);
                 }else{
                     this.checkExpire();
                 }
+                //start syncing with backend
                 IdeaSync.startSync(ideas);
             },
             checkExpire : function(){
-                console.log(ideas);
+                //loop through ideas and set public true/false
                 ideas.forEach(function(idea){
                     if(moment(idea.expire_date).diff(moment()) < 0){
                         idea.public = true;
@@ -150,11 +144,8 @@ angular.module('starter.services', [])
 				})[0];
 			},
 			add : function(content){
-
 				var expire_date = new Date();
-
 				expire_date.setDate(expire_date.getDate() + 30);
-
 				var newIdea = {
 					content : content,
 					synced : false,
@@ -166,7 +157,6 @@ angular.module('starter.services', [])
 					expire_date_formatted  :  moment(expire_date).fromNow(true),
 					new : true
 				};
-
 				ideas.unshift(newIdea);
 				return newIdea;
 			}

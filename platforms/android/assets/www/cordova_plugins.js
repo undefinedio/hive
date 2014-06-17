@@ -35,7 +35,8 @@ module.exports.metadata =
 {
     "org.apache.cordova.vibration": "0.3.9",
     "org.apache.cordova.device": "0.2.10",
-    "org.apache.cordova.network-information": "0.2.9"
+    "org.apache.cordova.network-information": "0.2.9",
+    "org.apache.cordova.console": "0.2.10-dev"
 }
 // BOTTOM OF METADATA
 });
