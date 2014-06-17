@@ -1,0 +1,74 @@
+
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'proxima';
+	src: url('fonts/proximanova-bold-webfont.eot');
+	src: url('fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/proximanova-bold-webfont.woff') format('woff'), url('fonts/proximanova-bold-webfont.ttf') format('truetype'), url('fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'proxima';
+	src: url('fonts/proximanova-light-webfont.eot');
+	src: url('fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/proximanova-light-webfont.woff') format('woff'), url('fonts/proximanova-light-webfont.ttf') format('truetype'), url('fonts/proximanova-light-webfont.svg#proxima_novalight') format('svg');
+	font-weight: 400;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'proxima';
+	src: url('fonts/proximanova-regular-webfont.eot');
+	src: url('fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/proximanova-regular-webfont.woff') format('woff'), url('fonts/proximanova-regular-webfont.ttf') format('truetype'), url('fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+	font-weight: 500;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: "hive";
+	src: url("fonts/hive.eot");
+	src: url("fonts/hive.eot?#iefix") format("embedded-opentype"), url("fonts/hive.woff") format("woff"), url("fonts/hive.ttf") format("truetype"), url("fonts/hive.svg#hive") format("svg");
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+[data-icon]:before {
+	font-family: "hive" !important;
+	content: attr(data-icon);
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+	font-family: "hive" !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back:before {
+	content: "a";
+}
+
+.icon-inspire:before {
+	content: "b";
+}
+
+.icon-new:before {
+	content: "c";
+}

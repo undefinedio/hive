@@ -1,0 +1,14 @@
+.item-complex.item-icon-right .item-content {
+	padding-right: 23px !important;
+	p{
+		width: 87%;
+		overflow: hidden;
+		display: inline;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		float: left;
+	}
+}
+.scroll{
+	padding-bottom: 5em;
+}

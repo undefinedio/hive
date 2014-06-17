@@ -1,0 +1,8 @@
+{
+  "name": "angular-sanitize",
+  "version": "1.2.19-build.255+sha.d71f16e",
+  "main": "./angular-sanitize.js",
+  "dependencies": {
+    "angular": "1.2.19-build.255+sha.d71f16e"
+  }
+}
